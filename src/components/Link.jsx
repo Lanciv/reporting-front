@@ -17,7 +17,9 @@ var Link = React.createClass({
       this.props.to : '/' + this.props.to;
 
     return this.transferPropsTo(
-      <a onClick={this.handleClick}>{this.props.children}</a>
+      <li>
+        <a href="#" onClick={this.handleClick}>{this.props.children}</a>
+      </li>
     );
   },
   handleClick(e) {

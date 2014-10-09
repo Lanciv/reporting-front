@@ -1,15 +1,18 @@
 {
-  "name": "react-seed",
+  "name": "reporting-front",
   "private": true,
   "version": "0.0.0",
-  "description": "Facebook React Starter Kit",
-  "repository": "https://github.com/kriasoft/react-starter-kit",
+  "description": "Reporting Framework",
+  "repository": "https://github.com/lanciv/reporting-front",
   "license": "MIT",
   "dependencies": {
+    "Griddle": "git://github.com/DynamicTyped/Griddle",
     "bootstrap": "^3.2.0",
     "director": "^1.2.3",
-    "flux": "^2.0.1",
-    "react": "^0.11.2"
+    "normalize.css": "^3.0.2",
+    "react": "^0.11.2",
+    "react-router": "^0.9.3",
+    "superagent": "^0.20.0"
   },
   "devDependencies": {
     "browser-sync": "^1.5.2",
@@ -18,6 +21,7 @@
     "gulp-autoprefixer": "^1.0.1",
     "gulp-cache": "^0.2.4",
     "gulp-changed": "^1.0.0",
+    "gulp-concat": "^2.4.1",
     "gulp-csscomb": "^3.0.2",
     "gulp-gh-pages": "^0.4.0",
     "gulp-htmlmin": "^0.2.0",

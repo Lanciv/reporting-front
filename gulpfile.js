@@ -55,12 +55,10 @@ gulp.task('clean', del.bind(null, [DEST]));
 
 // 3rd party libraries
 gulp.task('vendor', function () {
-  return merge(
-    gulp.src('./node_modules/jquery/dist/**')
-      .pipe(gulp.dest(DEST + '/vendor/jquery-' + pkgs.jquery)),
-    gulp.src('./node_modules/bootstrap/dist/fonts/**')
-      .pipe(gulp.dest(DEST + '/fonts'))
-  );
+  // return merge(
+  //   gulp.src('./node_modules/semantic-ui/fonts/**')
+  //     .pipe(gulp.dest(DEST + '/fonts'))
+  // );
 });
 
 // Static files
@@ -87,10 +85,9 @@ gulp.task('images', function () {
 
 // HTML pages
 gulp.task('pages', function () {
-  src.pages = ['src/pages/**/*.jsx', 'src/pages/404.html'];
+  src.pages = ['src/pages/**/*.html'];
   return gulp.src(src.pages)
     .pipe($.changed(DEST, {extension: '.html'}))
-    .pipe($.if('*.jsx', $.render({template: './src/pages/_template.html'})))
     .pipe($.replace('UA-XXXXX-X', GOOGLE_ANALYTICS_ID))
     .pipe($.if(RELEASE, $.htmlmin({
       removeComments: true,
@@ -104,9 +101,10 @@ gulp.task('pages', function () {
 // CSS style sheets
 gulp.task('styles', function () {
   src.styles = 'src/styles/**/*.{css,less}';
-  return gulp.src('src/styles/bootstrap.less')
+  return gulp.src(['src/styles/styles.less'])
     .pipe($.plumber())
     .pipe($.less({
+      paths: [ path.join(__dirname, '/src', '/less')],
       sourceMap: !RELEASE,
       sourceMapBasepath: __dirname
     }))
@@ -159,6 +157,8 @@ gulp.task('serve', function (cb) {
   runSequence('build', function () {
     browserSync({
       notify: false,
+      ghostMode: false,
+      open: false,
       // Customize the BrowserSync console logging prefix
       logPrefix: 'RSK',
       // Run as an https by uncommenting 'https: true'

@@ -23,8 +23,8 @@ module.exports = function (release) {
 
     cache: !release,
     debug: !release,
-    devtool: false,
-    entry: './src/App.js',
+    devtool: release ? '' : '#inline-source-map',
+    entry: './src/App.jsx',
 
     stats: {
       colors: true,
